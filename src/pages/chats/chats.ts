@@ -21,5 +21,4 @@ export class ChatsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatsPage');
   }
-
 }
