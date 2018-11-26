@@ -1,30 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, enableProdMode } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { config } from "./app.firebaseconfig";
+
+/***********************************************************************************************/
+/***********************************************************************************************
+ionic cordova plugin add cordova-plugin-firebase
+npm install --save @ionic-native/firebase
+npm uninstall angularfire2
+npm install angularfire2@5.0.0-rc.4
+npm uninstall firebase
+npm install firebase@4.8.0
+***********************************************************************************************/
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireModule } from 'angularfire2';
+/***********************************************************************************************/
+/***********************************************************************************************/
+
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { AuthProvider } from '../providers/auth/auth';
+import { UserProvider } from '../providers/user/user';
+
+enableProdMode();
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {tabsPlacement: 'top', scrollAssist: false, autoFocusAssist: false}),
+    AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider,
+    AngularFireAuth,
+    UserProvider
   ]
 })
 export class AppModule {}
