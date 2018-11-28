@@ -56,7 +56,6 @@ export class SignupPage {
           alert('Error => '+res);
         }
       });
-
     }    
   }
 
