@@ -1,12 +1,22 @@
 <ion-header>
-
   <ion-navbar color="dark">
-    <ion-title>Imagen De Perfil</ion-title>
+    <ion-title>Imagen de Perfil</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <div class="profile-image">
+    <img src="{{imgurl}}">
+  </div>
+  <div>
+    <button ion-button round outline (click)="chooseimage()">Seleccionar Imagen</button>
+  </div>
+  <div [hidden]="!moveon">
+    <button ion-button round outline (click)="proceed()">Saltar</button>
+  </div>
+  <div [hidden]="moveon">
+    <button ion-button round outline (click)="updateproceed()">Subir Imagen y Continuar</button>
+  </div>
 
 </ion-content>
