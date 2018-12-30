@@ -28,10 +28,10 @@ export class PasswordresetPage {
       if(res.success){
         alert.setTitle('Email Enviado');
         alert.setSubTitle('Debe seguir las instrucciones enviadas al correo electronico');
-      }else{
+      }
+    }).catch((err) => {
         alert.setTitle('Error');
         alert.setSubTitle('Vuelva a intentarlo mas tarde');
-      }
     });
   }
 

@@ -6,6 +6,18 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+
+  <div class="profile-image" (click)="editimage()" >
+    <img src="{{avatar}}">
+  </div>
+  <div>
+    <h2 (click)="editname()">{{displayName}}</h2>
+  </div>
+  <div>
+    Aca podras cambiar tu Imagen y Alias.
+  </div>
+  <div class="spacer" style="height: 10px;"></div>
+  <button ion-button clear outline color="danger" (click)="logout()">Salir</button>
 
 </ion-content>

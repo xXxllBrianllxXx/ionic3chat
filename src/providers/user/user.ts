@@ -81,4 +81,40 @@ export class UserProvider {
     return promise;
   }
 
+  getuserdetails(){
+    //firebase.database().ref('/users/' + firebase.auth().currentUser.uid)
+    var promise = new Promise((resolve, reject) => {
+      this.firedata.child(firebase.auth().currentUser.uid).once('value', (snapshot) => {
+        resolve(snapshot.val());
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+
+    return promise; 
+  }
+
+  updatedisplayname(newname){
+
+    var promise = new Promise((resolve, reject) => {
+      this.afireauth.auth.currentUser.updateProfile({
+        displayName: newname,
+        photoURL: this.afireauth.auth.currentUser.photoURL
+      }).then(() => {
+        this.firedata.child(firebase.auth().currentUser.uid).update({
+          displayName: newname,
+          photoURL: this.afireauth.auth.currentUser.photoURL,
+          uid: this.afireauth.auth.currentUser.uid
+        }).then(() =>{
+          resolve({success: true});
+        }).catch((err) => {
+          reject(err);
+        });
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  
+    return promise; 
+  }
 }
